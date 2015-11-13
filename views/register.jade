@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    include head.jade
+    include navbar.jade
+
+  body
+    div.container.row
+      div#panel.col-md-3.col-md-offset-5
+        form(action='/users/register' method='post')
+          h2.col-md-offset-4 LOGIN
+          input(name='username' type='email' placeholder='EMAIL' class='col-md-12') 
+          br
+          input(name='password' type='password' placeholder='PASSWORD' class='col-md-12') 
+          br
+          input(name='confirm_pw' type='password' placeholder='CONFIRM PASSWORD' class='col-md-12')
+          button(class='btn btn-primary btn-lg btn-block') REGISTER 
+          br 
+          a(href='/login') LOGIN 
