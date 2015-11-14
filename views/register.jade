@@ -6,16 +6,31 @@ html
 
   body
     div.container.row
-      div#panel.col-md-3.col-md-offset-5
+      div#panel.col-md-10.col-md-offset-1
         form(action='/users/register' method='post')
-          h2.col-md-offset-4 REGISTER 
-          if message
-            h4 #{message}
-          input(name='username' type='email' placeholder='EMAIL' class='col-md-12') 
-          br
-          input(name='password' type='password' placeholder='PASSWORD' class='col-md-12') 
-          br
-          input(name='confirm_pw' type='password' placeholder='CONFIRM PASSWORD' class='col-md-12')
-          button(class='btn btn-primary btn-lg btn-block') REGISTER 
-          br 
-          a(href='/login') LOGIN 
+          div.row
+            h2.col-md-2.col-md-offset-5 REGISTER 
+            if message
+              h4.col-md-4.col-md-offset-5 #{message}
+
+          div.row
+            div.col-md-6
+              input(name='firstName' type='text' placeholder='FIRST NAME' class='col-md-10') 
+              br
+              br
+              input(name='lastName' type='text' placeholder='LAST NAME' class='col-md-10') 
+              br
+              br
+              input(name='email' type='email' placeholder='EMAIL' class='col-md-10') 
+              br
+              br
+              input(name='password' type='password' placeholder='PASSWORD' class='col-md-10') 
+              br
+              br
+              input(name='confirm_pw' type='password' placeholder='CONFIRM PASSWORD' class='col-md-10')
+            div.col-md-6
+              textarea(name='bio' type='text' rows='10' placeholder='BIO' class='col-md-12')
+              br
+              br
+              button(class='btn btn-primary btn-lg btn-block') REGISTER
+              a(href='/login') LOGIN
