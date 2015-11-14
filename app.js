@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressSess = require('express-session');
 
 var controllers = require('./controllers/index');
 var users 		  = require('./controllers/users');
@@ -21,6 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(expressSess({
+	secret : process.env.SESSION_SECRET || 'secret',
+	saveUninitialized : false,
+	resave : false 
+}));
 
 app.use('/', controllers);
 app.use('/users', users);

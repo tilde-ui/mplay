@@ -11,6 +11,7 @@ router.post('/login', function(req, res, next) {
 			if (found.password !== password) {
 				res.render('login', { message: 'Incorrect password' });
 			} else {
+				req.session.uid = username;
 				res.render('login', { message: 'Successful login' }); 
 			}
 		} else {
