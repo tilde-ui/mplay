@@ -2,29 +2,47 @@ var express = require('express')
 var router  = express.Router();
 var user    = require('../models/user'); 
 
+router.post('/login', function(req, res, next) {
+	var username = req.body.username;
+	var password = req.body.password;
+	user.findOne({ username : username }, function(err, found) {
+		if (err) { throw err; }
+		else if (found) { 
+			if (found.password !== password) {
+				res.render('login', { message: 'Incorrect password' });
+			} else {
+				res.render('login', { message: 'Successful login' }); 
+			}
+		} else {
+			res.render('login', { message: 'User doesn\'t exist' });
+		}
+	});
+});
+
 router.post('/register', function(req, res, next) {
-	console.log('USERNAME: ' + req.body.username);
-	console.log('PASSWORD: ' + req.body.password);
-	console.log('CONFIRM: ' + req.body.confirm_pw);
 	var username   = req.body.username;
 	var password   = req.body.password;
 	var confirm_pw = req.body.confirm_pw;
-	user.findOne({ username : username }, function(err, found) {
-		if (err) { throw err; }
-		else if (found) { console.log('Already a user!'); }
-		else { 
-			var newuser = new user({
-				username : username,
-				password : password
-			});
-			newuser.save(function(err) {
-				if (err) { throw err; }
-				else { 
-					console.log('user created. you a mothafukin boss bruh');
-					res.render('login'); }
-			});
-		}
-	});
+	if (password !== confirm_pw) { 
+		res.render('register', { message: 'Passwords don\'t match!' }); 
+	} else {
+		user.findOne({ username : username }, function(err, found) {
+			if (err) { throw err; }
+			else if (found) { 
+				res.render('register', { message: 'Username exists!' }); 
+			}
+			else { 
+				var newuser = new user({
+					username : username,
+					password : password
+				});
+				newuser.save(function(err) {
+					if (err) { throw err; }
+					else { res.render('login', { message: 'User created!' }); }
+				});
+			}
+		});
+	}
 });
 
 module.exports = router;

@@ -8,7 +8,9 @@ html
     div.container.row
       div#panel.col-md-3.col-md-offset-5
         form(action='/users/register' method='post')
-          h2.col-md-offset-4 LOGIN
+          h2.col-md-offset-4 REGISTER 
+          if message
+            h4 #{message}
           input(name='username' type='email' placeholder='EMAIL' class='col-md-12') 
           br
           input(name='password' type='password' placeholder='PASSWORD' class='col-md-12') 
