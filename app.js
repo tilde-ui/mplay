@@ -4,7 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressSess = require('express-session');
+
+var expressSess 	= require('express-session');
+var mongoose    	= require('mongoose');
+var passport 			= require('passport');
+var localStrategy = require('passport-local').Strategy;
 
 var controllers = require('./controllers/index');
 var users 		  = require('./controllers/users');
@@ -28,6 +32,14 @@ app.use(expressSess({
 	saveUninitialized : false,
 	resave : false 
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+var user = require('./models/user');
+passport.use(new localStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
 app.use('/', controllers);
 app.use('/users', users);
