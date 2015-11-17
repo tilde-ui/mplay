@@ -10,9 +10,6 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(passportLocalMongoose);
-
-mongoose.connect('mongodb://localhost/mplay_db');
-
 var user = mongoose.model('user', userSchema);
 
 module.exports = user;

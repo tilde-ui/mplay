@@ -25,24 +25,24 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(expressSess({
 	secret : process.env.SESSION_SECRET || 'secret',
 	saveUninitialized : false,
 	resave : false 
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', controllers);
+app.use('/users', users);
 
 var user = require('./models/user');
 passport.use(new localStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
-app.use('/', controllers);
-app.use('/users', users);
+mongoose.connect('mongodb://localhost/mplay_db');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

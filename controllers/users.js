@@ -3,81 +3,24 @@ var router   = express.Router();
 var passport = require('passport');
 var user     = require('../models/user'); 
 
-// router.post('/login', function(req, res, next) {
-// 	var email 	 = req.body.email;
-// 	var password = req.body.password;
-// 	user.findOne({ email : email }, function(err, found) {
-// 		if (err) { throw err; }
-// 		else if (found) { 
-// 			if (found.password !== password) {
-// 				res.render('login', { message: 'Incorrect password' });
-// 			} else {
-// 				req.session.uid = email;
-// 				res.render('login', { message: 'Successful login' }); 
-// 			}
-// 		} else {
-// 			res.render('login', { message: 'User doesn\'t exist' });
-// 		}
-// 	});
-// });
-
-router.post('/register', function(req, res) {
-	var firstName  = req.body.firstName;
-	var lastName	 = req.body.lastName;
-	var username   = req.body.email;
-	var password   = req.body.password;
-	var confirm_pw = req.body.confirm_pw;
-	if (password !== confirm_pw) { 
-		res.render('register', { message: 'Passwords don\'t match!' }); 
-	} else {
-		user.findOne({ username : username }, function(err, found) {
-			if (err) { throw err; }
-			else if (found) { 
-				res.render('register', { message: 'Username exists!' }); 
-			}
-			else { 
-				user.register(new user({
-					firstName : firstName,
-					lastName  : lastName,
-					username 	: username,
-					password  : password
-				}), password, function(err, user) {
-					if (err) { console.log(err); }
-					res.render('register', { message: 'success'});
-				});
-			}
-		});
-	}
+router.post('/login', passport.authenticate('local'), function(req, res) {
+	console.log(arguments);
+	res.render('login', { message : 'success' });
 });
 
-// router.post('/register', function(req, res, next) {
-// 	var firstName  = req.body.firstName;
-// 	var lastName	 = req.body.lastName;
-// 	var email   	 = req.body.email;
-// 	var password   = req.body.password;
-// 	var confirm_pw = req.body.confirm_pw;
-// 	if (password !== confirm_pw) { 
-// 		res.render('register', { message: 'Passwords don\'t match!' }); 
-// 	} else {
-// 		user.findOne({ email : email }, function(err, found) {
-// 			if (err) { throw err; }
-// 			else if (found) { 
-// 				res.render('register', { message: 'Username exists!' }); 
-// 			}
-// 			else { 
-// 				var newuser = new user({
-// 					firstName : firstName,
-// 					lastName  : lastName,
-// 					email 		: email,
-// 					password  : password
-// 				});
-// 				newuser.save(function(err) {
-// 					if (err) { throw err; }
-// 					else { res.render('login', { message: 'User created!' }); }
-// 				});
-// 			}
-// 		});
-// 	}
-// });
+router.post('/register', function(req, res, next) {
+	user.findOne({ username : req.body.username }, function(err, found) {
+		if (found) { res.render('register', { message: 'User exists' }); }
+		user.register(new user({
+			firstName : req.body.firstName,
+			lastName  : req.body.lastName,
+			username  : req.body.username,
+			password  : req.body.password
+		}), req.body.password, function(err, found) {
+			if (err) { res.render('register', { message : err }); }
+			res.render('register', { message : 'Success' });
+		});
+	});
+});
 
 module.exports = router;
