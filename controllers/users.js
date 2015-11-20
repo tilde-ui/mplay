@@ -4,8 +4,12 @@ var passport = require('passport');
 var user     = require('../models/user'); 
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-	console.log(arguments);
-	res.render('login', { message : 'success' });
+	res.render('login', { message : 'success', isAuth : req.isAuthenticated() });
+});
+
+router.get('/logout', function(req, res) {
+	req.logout();
+	res.render('login', { message: 'logged out', isAuth : req.isAuthenticated() });
 });
 
 router.post('/register', function(req, res, next) {

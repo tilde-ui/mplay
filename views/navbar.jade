@@ -15,5 +15,9 @@ nav(role='navigation' class='navbar navbar-default navbar-fixed-top')
       li
         a(href='#') Option 3
     ul(class='nav navbar-nav navbar-right' style='margin-right:0')
+      if isAuth
         li
-          a(href='#') Option 4 
+          a(href='/users/logout') LOGOUT 
+      else 
+        li
+          a(href='/login') LOGIN
