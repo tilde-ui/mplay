@@ -3,26 +3,40 @@ var router   = express.Router();
 var passport = require('passport');
 var user     = require('../models/user'); 
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-	res.render('login', { message : 'success', isAuth : req.isAuthenticated() });
+router.post('/login', (req, res, next) => {
+	passport.authenticate('local', (err, user, info) => {
+		if      (err)   { res.render('login', { message : err, 					  isAuth : req.isAuthenticated() }); }
+		else if (!user) { res.render('login', { message : 'No such user', isAuth : req.isAuthenticated() }); }
+		else { 
+			req.logIn(user, (err) => {
+				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); } 
+				else { 
+					req.session.user = req.user;
+					res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); 
+				}
+			});
+		}
+	})(req, res, next);
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', (req, res) => {
+	req.session.user = undefined;
 	req.logout();
 	res.render('login', { message: 'logged out', isAuth : req.isAuthenticated() });
 });
 
-router.post('/register', function(req, res, next) {
-	user.findOne({ username : req.body.username }, function(err, found) {
-		if (found) { res.render('register', { message: 'User exists' }); }
+router.post('/register', (req, res, next) => {
+	user.findOne({ username : req.body.username }, (err, found) => {
+		if (found) { res.render('register', { message : 'User exists', isAuth  : req.isAuthenticated() }); }
 		user.register(new user({
 			firstName : req.body.firstName,
 			lastName  : req.body.lastName,
 			username  : req.body.username,
+			email 		: req.body.email,
 			password  : req.body.password
-		}), req.body.password, function(err, found) {
-			if (err) { res.render('register', { message : err }); }
-			res.render('register', { message : 'Success' });
+		}), req.body.password, (err, found) => {
+			if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+			else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
 		});
 	});
 });

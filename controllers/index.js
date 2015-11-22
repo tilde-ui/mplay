@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', (req, res, next) => { 
+	if   (req.session.user) { res.render('dashboard', { isAuth : req.isAuthenticated() }); }
+	else 									  { res.render('index', 		{ isAuth : req.isAuthenticated() }); }
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login');
+router.get('/dash', (req, res, next) => { 
+	if (req.session.user) { res.render('dashboard', { isAuth : req.isAuthenticated() }); }
+	else { res.render('login', { isAuth : req.isAuthenticated() }); }
 });
 
-router.get('/register', function(req, res, next) {
-	res.render('register');
-});
+router.get('/login', 	  (req, res, next) => { res.render('login',    { isAuth : req.isAuthenticated() }); });
+router.get('/register', (req, res, next) => { res.render('register', { isAuth : req.isAuthenticated() }); });
+
 
 module.exports = router;
