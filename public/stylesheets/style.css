@@ -10,3 +10,13 @@ a {
 #panel {
 	background-color: #D4D4D4
 }
+
+#panel_2 {
+	background-color: #FFFFFF;
+	overflow-y: scroll;
+	height:250px;
+}
+
+#molecule {
+	margin-top: 5px
+}

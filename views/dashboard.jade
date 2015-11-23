@@ -5,11 +5,31 @@ html
     include navbar.jade
 
   body
+    h2 DASHBOARD
     div.container.row
-      h2 DASHBOARD
       br
-      div#panel.row.col-md-10.col-md-offset-1
-        div.col-md-5
-          h3 SUBMISSIONS
-        div.col-md-7
+      div#panel.row.col-md-11.col-md-offset-1
+        div.col-md-5.col-xs-12
+          form(action='#' method='post')
+            h3 SUBMISSIONS
+            input(name='title' type='text' placeholder='TITLE' class='col-md-12 col-cs-12')
+            br
+            input(name='mcat' type='text' placeholder='CATEGORY' class='col-md-12 col-cs-12')
+            br
+            textarea(name='description' type='text' rows='10' placeholder='DESCRIPTION' class='col-md-12 col-cs-12')
+            br
+            input(name='molecule' type='file' placeholder='BROWSE' class='col-md-12 col-cs-12')
+            br
+            button(class='btn btn-primary btn-lg btn-block') SUBMIT
+            br
+
+        div.col-md-7.col-xs-12
           h3 SCENES
+          div#panel_2.row.col-md-12
+            - for (var i = 0; i < 100; i++ ) {
+                div#molecule.col-md-3.col-md-offset-1(style='border:1px solid black')
+                  h6='MOLECULE_' + (i+1)
+                  img(src='http://placehold.it/75x75' style='border:1px solid white')
+            - }
+
+  include scripts.jade
