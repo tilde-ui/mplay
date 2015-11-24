@@ -7,8 +7,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/dash', (req, res, next) => { 
-	if (req.session.user) { res.render('dashboard', { isAuth : req.isAuthenticated() }); }
-	else { res.render('login', { isAuth : req.isAuthenticated() }); }
+	if (req.session.user) 		 { res.render('dashboard', { isAuth : req.isAuthenticated() }); }
+	else { res.render('login', { isAuth : req.isAuthenticated() }); 													}
 });
 
 router.get('/login', 	  (req, res, next) => { res.render('login',    { isAuth : req.isAuthenticated() }); });

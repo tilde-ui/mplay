@@ -5,8 +5,8 @@ var user     = require('../models/user');
 
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local', (err, user, info) => {
-		if      (err)   { res.render('login', { message : err, 					  isAuth : req.isAuthenticated() }); }
-		else if (!user) { res.render('login', { message : 'No such user/Incorrect password', isAuth : req.isAuthenticated() }); }
+		if      (err)   { res.render('login', { message : err, isAuth : req.isAuthenticated() }); }
+		else if (!user) { res.render('login', { message : 'No user/Incorrect password', isAuth : req.isAuthenticated() }); }
 		else { 
 			req.logIn(user, (err) => {
 				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); } 

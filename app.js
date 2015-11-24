@@ -12,6 +12,7 @@ var localStrategy = require('passport-local').Strategy;
 
 var controllers = require('./controllers/index');
 var users 		  = require('./controllers/users');
+var molecules   = require('./controllers/molecules');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', controllers);
 app.use('/users', users);
+app.use('/molecules', molecules);
 
 var user = require('./models/user');
 passport.use(new localStrategy(user.authenticate()));

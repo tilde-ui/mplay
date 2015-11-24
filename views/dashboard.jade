@@ -6,15 +6,17 @@ html
 
   body
     h2 DASHBOARD
+    if message 
+      h5=message
     div.container.row
       br
       div#panel.row.col-md-11.col-md-offset-1
         div.col-md-5.col-xs-12
-          form(action='#' method='post')
+          form(action='/molecules/upload_mol' method='post')
             h3 SUBMISSIONS
             input(name='title' type='text' placeholder='TITLE' class='col-md-12 col-cs-12')
             br
-            input(name='mcat' type='text' placeholder='CATEGORY' class='col-md-12 col-cs-12')
+            input(name='category' type='text' placeholder='CATEGORY' class='col-md-12 col-cs-12')
             br
             textarea(name='description' type='text' rows='10' placeholder='DESCRIPTION' class='col-md-12 col-cs-12')
             br
@@ -28,8 +30,8 @@ html
           div#panel_2.row.col-md-12
             - for (var i = 0; i < 100; i++ ) {
                 div#molecule.col-md-3.col-md-offset-1(style='border:1px solid black')
-                  h6='MOLECULE_' + (i+1)
-                  img(src='http://placehold.it/75x75' style='border:1px solid white')
+                  h6.col-md-offset-1='MOLECULE_' + (i+1)
+                  img.col-md-offset-1(src='http://placehold.it/75x75' style='border:1px solid white')
             - }
 
   include scripts.jade
