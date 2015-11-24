@@ -7,7 +7,11 @@ var userSchema = new mongoose.Schema({
 	lastName  :  { type: String, 	 required: true  						 },
 	bio				:  { type: String, 	 required: false 						 },
 	email			:	 { type: String, 	 lowercase: true, trim: true },
-	molecules : [{ type: ObjectId, ref: 'molecule' 						 }]
+	molecules : [{ type: ObjectId, ref: 'molecule' 						 }],
+	adminOf		:	[{
+		organization:		{type: ObjectId, ref:	'organization'},
+		permissionType: {type: String}} //open to changes...
+	]
 });
 
 userSchema.plugin(passportLocalMongoose);
