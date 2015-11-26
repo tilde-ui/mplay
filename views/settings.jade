@@ -5,7 +5,7 @@ html
     include navbar.jade
 
   body
-    h2 REGISTER
+    h2 SETTINGS
     div.container.row
       br
       div#panel.col-md-10.col-md-offset-1
@@ -17,22 +17,16 @@ html
 
           div.row
             div.col-md-6
-              input(name='firstName' type='text' placeholder='FIRST NAME' class='col-md-10')
+              p(class='col-md-8')= user.firstName
               br
               br
-              input(name='lastName' type='text' placeholder='LAST NAME' class='col-md-10')
+              p(class='col-md-8')= user.lastName
               br
               br
-              input(name='username' type='text' placeholder='USERNAME' class='col-md-10') 
+              p(class='col-md-8')= user.email
               br
               br
-              input(name='email' type='email' placeholder='EMAIL' class='col-md-10')
-              br
-              br
-              input(name='password' type='password' placeholder='PASSWORD' class='col-md-10')
-              br
-              br
-              input(name='confirm_pw' type='password' placeholder='CONFIRM PASSWORD' class='col-md-10')
+              input(name='password' type='password' placeholder='PASSWORD' class='col-md-8')
             div.col-md-6
               textarea(name='bio' type='text' rows='10' placeholder='BIO' class='col-md-12')
               br

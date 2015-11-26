@@ -33,7 +33,8 @@ router.post('/register', (req, res, next) => {
 			lastName  : req.body.lastName,
 			username  : req.body.username,
 			email 		: req.body.email,
-			password  : req.body.password
+			password  : req.body.password,
+			auth 			: 'AUTHOR'
 		}), req.body.password, (err, found) => {
 			if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
 			else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }

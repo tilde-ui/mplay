@@ -5,10 +5,11 @@ html
     include navbar.jade
 
   body
+    h2 LOGIN
     div.container.row
       div#panel.col-md-3.col-md-offset-5
         form(action='/users/login' method='post')
-          h2.col-md-offset-4 LOGIN
+          br
           if message
             h4 #{message}
           input(name='username' type='text' placeholder='USERNAME' class='col-md-12') 

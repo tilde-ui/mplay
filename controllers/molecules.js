@@ -12,7 +12,6 @@ router.post('/upload_mol', (req, res, next) => {
 	}).save((err, mol) => {
 		if (err) { console.log(err); res.render('dashboard', { message : 'error', 	isAuth : req.isAuthenticated() }); }
 		else { 
-			console.log(mol._id);	
 			user.findByIdAndUpdate(
 				req.user._id,
 				{$push: {'molecules': mol._id }},
@@ -22,7 +21,6 @@ router.post('/upload_mol', (req, res, next) => {
 					else 		 { res.render('dashboard', { message: 'success', isAuth : req.isAuthenticated() }); }
 				}
 			);
-			// res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); 
 		}
 	});
 });
