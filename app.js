@@ -1,14 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+var express 		 = require('express');
+var path 				 = require('path');
+var favicon 		 = require('serve-favicon');
+var logger 			 = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var bodyParser 	 = require('body-parser');
 
 var expressSess 	= require('express-session');
 var mongoose    	= require('mongoose');
 var passport 			= require('passport');
 var localStrategy = require('passport-local').Strategy;
+var grid					= require('gridfs-stream');
 
 var controllers = require('./controllers/index');
 var users 		  = require('./controllers/users');
@@ -44,7 +45,11 @@ passport.use(new localStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
-mongoose.connect('mongodb://localhost/mplay_db');
+mongoose.connect('mongodb://localhost/mplay_db')
+mongoose.connection.once('open', () => {
+	var gfs = grid(mongoose.connection.db, mongoose.mongo);
+	app.set('gridfs', gfs);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

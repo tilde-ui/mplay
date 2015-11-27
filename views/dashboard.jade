@@ -12,7 +12,7 @@ html
       br
       div#panel.row.col-md-11.col-md-offset-1
         div.col-md-5.col-xs-12
-          form(action='/molecules/upload_mol' method='post')
+          form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
             h3 SUBMISSIONS
             input(name='title' type='text' placeholder='TITLE' class='col-md-12 col-cs-12')
             br
