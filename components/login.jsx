@@ -32,7 +32,7 @@ class Login extends Component {
                     </div>
                     <div className='col m6 s6'>
                       <a href='/register'>
-                        <button className='btn col m12 s12' type='button'>Create New Account</button>
+                        <button className='btn col m12 s12' type='button'>Register</button>
                       </a>
                     </div>
                   </div>

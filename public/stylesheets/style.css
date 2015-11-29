@@ -1,11 +1,11 @@
-body {
+/*body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
-}
+}*/
 
 #panel {
 	background-color: #D4D4D4
@@ -20,3 +20,12 @@ a {
 #molecule {
 	margin-top: 5px
 }
+
+/*.side-nav {
+  min-width: 240px;
+  display: block;
+}
+
+.side-nav li {
+  padding: 10px;
+}*/

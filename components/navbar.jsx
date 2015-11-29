@@ -18,7 +18,11 @@ class Navbar extends Component {
       <nav>
         <div className="nav-wrapper indigo darken-4">
           <a href="#" className="brand-logo">Molecular Playground</a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+          <ul className="right hide-on-med-and-down">
+            {navList}
+          </ul>
+          <ul className="side-nav" id='slide-out'>
             {navList}
           </ul>
         </div>
