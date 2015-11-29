@@ -18,25 +18,25 @@ class Login extends Component {
                 <span className='card-title black-text'>Login</span>
                 {message}
                 <form action='/users/login' method='post'>
-                  <div className='input-field'>
-                    <input ref={(ref) => this.username = ref} type='text' className='form-control' placeholder='Email' />
-                  </div>
-                  <div className='input-field'>
-                    <input type='text' className='form-control' placeholder='Password' />
+                  <div className='row'>
+                    <div className='input-field col m12 s12'>
+                      <input type='text' className='form-control' placeholder='Email' />
+                    </div>
+                    <div className='input-field col m12 s12'>
+                      <input type='text' className='form-control' placeholder='Password' />
+                    </div>
                   </div>
                   <div className='row'>
-                    <button
-                      className='btn col m12'>
-                      Login</button>
+                    <div className='col m6 s6'>
+                      <button className='btn col m12 s12'>Login</button>
+                    </div>
+                    <div className='col m6 s6'>
+                      <a href='/register'>
+                        <button className='btn col m12 s12' type='button'>Create New Account</button>
+                      </a>
+                    </div>
                   </div>
                 </form>
-                <div className='row'>
-                  <a href='/register'>
-                    <button
-                      className='btn col m12'>
-                      Create New Account</button>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
