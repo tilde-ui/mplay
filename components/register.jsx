@@ -3,6 +3,11 @@ import Layout from './Layout';
 
 class Register extends Component {
   render() {
+    let message;
+    if (this.props.message) {
+      message = <p>{this.props.message.message}</p>;
+    }
+
     return (
       <Layout>
         <div className='row'>
@@ -10,6 +15,7 @@ class Register extends Component {
             <div className='card'>
               <div className='card-content'>
                 <span className='card-title black-text'>User Registration</span>
+                {message}
                 <form action='/users/register' method='post'>
                   <div className='row'>
                     <div className='input-field col m6 s12'>
@@ -20,6 +26,9 @@ class Register extends Component {
                     </div>
                     <div className='input-field col m12 s12'>
                       <input className='validate' name='email' type='text' placeholder='Email' />
+                    </div>
+                    <div className='input-field col m12 s12'>
+                      <input className='validate' name='username' type='text' placeholder='Username' />
                     </div>
                     <div className='input-field col m6 s12'>
                       <input className='validate' name='password' type='password' placeholder='Password' />

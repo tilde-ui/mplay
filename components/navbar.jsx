@@ -2,16 +2,20 @@ import React, {Component} from 'react';
 
 class Navbar extends Component {
   render() {
+    let navOptions = [
+      'Organization',
+      'Installation',
+      'Account',
+      'Logout'
+    ];
     let navList;
 
     if (this.props.isAuth) {
-      navList = (
-        <li><a href='/users/logout'>Logout</a></li>
-      )
+      navList = navOptions.map((item, index) => {
+        return <li key={index}><a href='/users/logout'>{item}</a></li>;
+      })
     } else {
-      navList = (
-        <li><a href='/login'>Login</a></li>
-      )
+      navList = <li><a href='/login'>Login</a></li>;
     }
 
     return (
