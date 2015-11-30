@@ -25,8 +25,8 @@ router.post('/upload_mol', multer({ dest: './public/uploads' }).single('molecule
 					{$push: {'molecules': mol._id }},
 					{safe: true, upsert: true, new: true},
 					(err) => {
-						if (err) { res.render('dashboard', { message: 'error', 	 isAuth : req.isAuthenticated() }); }
-						else 		 { res.render('dashboard', { message: 'success', isAuth : req.isAuthenticated() }); }
+						if (err) { res.render('dashboard', { message : 'error', 	 isAuth : req.isAuthenticated() }); }
+						else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
 					}
 				);
 			}

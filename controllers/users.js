@@ -34,12 +34,32 @@ router.post('/register', (req, res, next) => {
 			username  : req.body.username,
 			email 		: req.body.email,
 			password  : req.body.password,
+			bio				: req.body.bio,
 			auth 			: 'AUTHOR'
 		}), req.body.password, (err, found) => {
 			if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
 			else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
 		});
 	});
+});
+
+router.post('/update', (req, res, next) => {
+	var fields = {
+		firstName : req.body.fname,
+		lastName 	: req.body.lname,
+		email 		: req.body.email,
+		bio 			: req.body.bio	
+	}
+	for (item in fields) { if (fields[item] === '') { delete fields[item] } }
+	user.findByIdAndUpdate(
+		req.user._id,
+		{$set: fields},
+		{safe: true},
+		(err) => {
+			if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
+			else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+		}
+	)
 });
 
 module.exports = router;
