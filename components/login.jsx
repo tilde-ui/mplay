@@ -20,10 +20,10 @@ class Login extends Component {
                 <form action='/users/login' method='post'>
                   <div className='row'>
                     <div className='input-field col m12 s12'>
-                      <input type='text' className='form-control' placeholder='Email' />
+                      <input type='text' name='username' className='form-control' placeholder='Email' />
                     </div>
                     <div className='input-field col m12 s12'>
-                      <input type='password' className='form-control' placeholder='Password' />
+                      <input type='password' name='password' className='form-control' placeholder='Password' />
                     </div>
                   </div>
                   <div className='row'>

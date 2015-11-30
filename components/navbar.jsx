@@ -20,7 +20,7 @@ class Navbar extends Component {
 
     return (
       <nav>
-        <div className="nav-wrapper indigo darken-4">
+        <div className="nav-wrapper blue-grey darken-3">
           <a href="#" className="brand-logo">Molecular Playground</a>
           <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
           <ul className="right hide-on-med-and-down">

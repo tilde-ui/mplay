@@ -12,8 +12,10 @@ class Layout extends Component {
           <link rel='stylesheet' href='/stylesheets/style.css' />
         </head>
         <body>
-          <Navbar />
-          {this.props.children}
+          <Navbar isAuth={this.props.isAuth} />
+          <div className='container'>
+            {this.props.children}
+          </div>
           <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
           <script src='/javascripts/initialize.js'></script>

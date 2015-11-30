@@ -6,6 +6,10 @@
 a {
   color: #00B7FF;
 }*/
+body {
+  background-color: #cfd8dc;
+}
+
 nav {
   margin-bottom: 15px;
 }
@@ -26,15 +30,11 @@ nav {
 
 img.thumbnail {
   display: inline-block;
-  height: 60px;
-  width: 80px;
+  width: 23.333%;
+  margin: 10px 5%;
 }
 
-/*.side-nav {
-  min-width: 240px;
-  display: block;
+div.scenes {
+  overflow-y: scroll;
+  max-height: 400px;
 }
-
-.side-nav li {
-  padding: 10px;
-}*/
