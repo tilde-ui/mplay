@@ -1,37 +1,32 @@
-doctype html
-html
-  head
-    include head.jade
-    include navbar.jade
+extends layout.jade
 
-  body
-    h2 DASHBOARD
-    if message 
-      h5=message
-    div.container.row
-      br
-      div#panel.row.col-md-11.col-md-offset-1
-        div.col-md-5.col-xs-12
-          form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
-            h3 SUBMISSIONS
-            input(name='title' type='text' placeholder='TITLE' class='col-md-12 col-cs-12')
-            br
-            input(name='category' type='text' placeholder='CATEGORY' class='col-md-12 col-cs-12')
-            br
-            textarea(name='description' type='text' rows='10' placeholder='DESCRIPTION' class='col-md-12 col-cs-12')
-            br
-            input(name='molecule' type='file' placeholder='BROWSE' class='col-md-12 col-cs-12')
-            br
-            button(class='btn btn-primary btn-lg btn-block') SUBMIT
-            br
-
-        div.col-md-7.col-xs-12
-          h3 SCENES
-          div#panel_2.row.col-md-12
-            - for (var i = 0; i < 100; i++ ) {
-                div#molecule.col-md-3.col-md-offset-1(style='border:1px solid black')
-                  h6.col-md-offset-1='MOLECULE_' + (i+1)
-                  img.col-md-offset-1(src='http://placehold.it/75x75' style='border:1px solid white')
-            - }
+block content            
+  div.row
+    div.col.m12.s12
+      div.card
+        div.card-content
+          span.card-title.black-text Submissions
+          div.row
+            div.col.m5.s12
+              form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
+                div.row
+                  div.input-field.col.m12.s12
+                    input(name='title' type='text' placeholder='Title')
+                  div.input-field.col.m12.s12
+                    input(name='category' type='text' placeholder='Category')
+                  div.input-field.col.m12.s12
+                    textarea(name='description' type='text' placeholder='Description' style='height:100px')
+                  div.file-field.input-field.col.m12.s12
+                    div.btn
+                      span Browse
+                      input(name='molecule' type='file')
+                    div.file-path-wrapper
+                      input.file-path.validate(type="text")
+                  div.input-field.col.m12.s12
+                    button.btn.col.m12.s12 Submit
+            div.scenes.col.m7.s12
+              - for (var i = 0; i < 100; i++ ) {
+                  img.thumbnail(src='/images/caffeine.jpg')
+              - }
 
   include scripts.jade
