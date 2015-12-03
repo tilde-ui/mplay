@@ -1,53 +1,31 @@
-doctype html
-html
-  head
-    include head.jade
-    link(rel='stylesheet', href='/stylesheets/settings/settings.css')
-    include navbar.jade
+extends layout.jade
 
-  body
-    h2 SETTINGS
-      if message
-        h4.col-md-4.col-md-offset-5 #{message}
-    div.container.row
-      br
-      div#panel.col-md-10.col-md-offset-1
-        form(action='/users/update' method='post')
-
-          div.row
-            div.col-md-6
-              h3 FIRST NAME
-              p(id='fname' class='edit col-md-8')= user.firstName
-              input(id='fname' name='fname' class='cancel text col-md-8' type='text' placeholder='FIRST NAME')
-              btn(id='fname' class='edit col-md-4 btn btn-primary') EDIT
-              btn(id='fname' class='cancel col-md-4 btn btn-primary') CANCEL 
-              br
-              br
-              h3 LAST NAME
-              p(id='lname' class='edit col-md-8')= user.lastName
-              input(id='lname' name='lname' class='cancel text col-md-8' type='text' placeholder='LAST NAME')
-              btn(id='lname' class='edit col-md-4 btn btn-primary') EDIT
-              btn(id='lname' class='cancel col-md-4 btn btn-primary') CANCEL 
-              br
-              br
-              h3 EMAIL
-              p(id='email' class='edit col-md-8')= user.email
-              input(id='email' name='email' class='cancel text col-md-8' type='text' placeholder='EMAIL')
-              btn(id='email' class='edit col-md-4 btn btn-primary') EDIT
-              btn(id='email' class='cancel col-md-4 btn btn-primary') CANCEL
-              text 
-            div.col-md-6
-              h3 BIO
-              p(id='bio' class='edit col-md-12')= user.bio
-              textarea(id='bio' name='bio' class='cancel text col-md-12' type='text' placeholder='BIO')
-              btn(id='bio' class='edit col-md-4 col-md-offset-8 btn btn-primary') EDIT
-              btn(id='bio' class='cancel col-md-4 col-md-offset-8 btn btn-primary') CANCEL 
-              br
-              br
-              br
-              br
-              button(class='btn btn-primary btn-lg btn-block') UPDATE
-              br
-
+block content
+  div.row
+    div.col.m8.s12.offset-m2
+      div.card
+        div.card-content
+          span.card-title.black-text Edit Account
+          p #{message}
+          form(action='/users/update' method='post')
+            div.row
+              div.input-field.col.m12.s12
+                input(name='firstName' type='text' id='accFirstName' value='#{user.firstName}')
+                label(for='accFirstName') First Name
+              div.input-field.col.m12.s12
+                input(name='lastName' type='text' id='accLastName' value='#{user.lastName}')
+                label(for='accLastName') Last Name
+              div.input-field.col.m12.s12
+                input(name='email' type='text' id='accEmail' value='#{user.email}')
+                label(for='accEmail') Email
+            div.row
+              div.col.m12.s12
+                div.input-field
+                  textarea(name='bio' placeholder='Bio' style='height:275px,display:none' value='#{user.bio}')
+            div.row
+              div.col.m6
+                a(href='/dash')
+                  button.btn.col.m12(type='button') Save Changes
+              div.col.m6
+                button.btn.col.m12 Cancel
   include scripts.jade
-  script(src='/javascripts/settings/settings.js')

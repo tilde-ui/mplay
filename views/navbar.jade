@@ -1,20 +1,31 @@
-nav(role='navigation' class='navbar navbar-default navbar-fixed-top')
-  div(class='navbar-header')
-    button(type='button' class='navbar-toggle' data-target='#navbarCollapse' data-toggle='collapse')
-      span(class='sr-only') Toggle Navigation
-      span(class='icon-bar')
-      span(class='icon-bar')
-      span(class='icon-bar')
-    a(href='/dash' class='navbar-brand') MPLAY
-  div(id='navbarCollapse' class='collapse navbar-collapse')
-    ul(class='nav navbar-nav navbar-left')
-      if isAuth
+- var navOptions = ['Organization', 'Installation', 'Account', 'Logout'];
+
+nav
+  div.nav-wrapper.blue-grey.darken-3
+    a.brand-logo(href="#") Molecular Playground
+    a.button-collapse(href="#", data-activates="slide-out")
+      i.material-icons menu
+    if isAuth  
+      ul.right.hide-on-med-and-down
+        for item in navOptions
+          if item === 'Account'
+            li
+              a(href='/settings')= item
+          else
+            li
+              a(href='/users/logout')= item
+      ul.side-nav#slide-out
+        for item in navOptions
+          if item === 'Account'
+            li
+              a(href='/settings')= item
+          else
+            li
+              a(href='/users/logout')= item
+    else
+      ul.right.hide-on-med-and-down
         li
-          a(href='/settings') ACCOUNT SETTINGS 
-    ul(class='nav navbar-nav navbar-right' style='margin-right:0')
-      if isAuth
+          a(href='/login') Login
+      ul.side-nav#slide-out
         li
-          a(href='/users/logout') LOGOUT 
-      else 
-        li
-          a(href='/login') LOGIN
+          a(href='/login') Login
