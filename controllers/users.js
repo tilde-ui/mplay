@@ -1,18 +1,18 @@
 var express  = require('express')
 var router   = express.Router();
 var passport = require('passport');
-var user     = require('../models/user'); 
+var user     = require('../models/user');
 
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local', (err, user, info) => {
 		if      (err)   { res.render('login', { message : err, isAuth : req.isAuthenticated() }); }
 		else if (!user) { res.render('login', { message : 'No user/Incorrect password', isAuth : req.isAuthenticated() }); }
-		else { 
+		else {
 			req.logIn(user, (err) => {
-				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); } 
-				else { 
+				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); }
+				else {
 					req.session.user = req.user;
-					res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); 
+					res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() });
 				}
 			});
 		}
@@ -45,12 +45,12 @@ router.post('/register', (req, res, next) => {
 
 router.post('/update', (req, res, next) => {
 	var fields = {
-		firstName : req.body.fname,
-		lastName 	: req.body.lname,
+		firstName : req.body.firstName,
+		lastName 	: req.body.lastName,
 		email 		: req.body.email,
-		bio 			: req.body.bio	
+		bio 			: req.body.bio
 	}
-	for (item in fields) { if (fields[item] === '') { delete fields[item] } }
+	for (item in fields) { if (fields[item] === '' || fields[item] === null) { delete fields[item] } }
 	user.findByIdAndUpdate(
 		req.user._id,
 		{$set: fields},

@@ -8,12 +8,20 @@ nav
     if isAuth  
       ul.right.hide-on-med-and-down
         for item in navOptions
-          li
-            a(href='/users/logout')= item
+          if item === 'Account'
+            li
+              a(href='/settings')= item
+          else
+            li
+              a(href='/users/logout')= item
       ul.side-nav#slide-out
         for item in navOptions
-          li
-            a(href='/users/logout')= item
+          if item === 'Account'
+            li
+              a(href='/settings')= item
+          else
+            li
+              a(href='/users/logout')= item
     else
       ul.right.hide-on-med-and-down
         li
