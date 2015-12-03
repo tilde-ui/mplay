@@ -2,7 +2,7 @@
 
 nav
   div.nav-wrapper.blue-grey.darken-3
-    a.brand-logo(href="#") Molecular Playground
+    a.brand-logo(href="/dash") Molecular Playground
     a.button-collapse(href="#", data-activates="slide-out")
       i.material-icons menu
     if isAuth  
@@ -11,6 +11,9 @@ nav
           if item === 'Account'
             li
               a(href='/settings')= item
+          else if item === 'Installation'
+            li
+              a(href='/installation')= item
           else
             li
               a(href='/users/logout')= item
@@ -19,6 +22,9 @@ nav
           if item === 'Account'
             li
               a(href='/settings')= item
+          else if item === 'Installation'
+            li
+              a(href='/installation')= item
           else
             li
               a(href='/users/logout')= item
