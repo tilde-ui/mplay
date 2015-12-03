@@ -7,7 +7,7 @@ nav {
 }
 
 #panel {
-	background-color: #D4D4D4
+	background-color: #D4D4D4;
 }
 
 #panel_2 {
@@ -29,4 +29,7 @@ img.thumbnail {
 div.scenes {
   overflow-y: scroll;
   max-height: 400px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #D4D4D4;
 }
