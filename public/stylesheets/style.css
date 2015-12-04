@@ -6,6 +6,13 @@ nav {
   margin-bottom: 15px;
 }
 
+footer {
+  background-color: #cfd8dc;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+}
+
 #panel {
 	background-color: #D4D4D4;
 }
@@ -29,13 +36,14 @@ img.thumbnail {
 div.scenes {
   overflow-y: scroll;
   max-height: 400px;
+  margin-top: 7.5px;
   border-style: solid;
   border-width: thin;
-  border-color: #D4D4D4;
+  border-color: #e0e0e0;
 }
 
 ol.playlist {
-  height: 392.5px;
+  height: 400px;
   overflow-y: scroll;
 }
 
