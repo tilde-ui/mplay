@@ -11,11 +11,11 @@ router.get('/dash', (req, res, next) => {
 	else { res.render('login', { isAuth : req.isAuthenticated() }); 													}
 });
 
-router.get('/login', 	  (req, res, next) => { res.render('login',    { isAuth : req.isAuthenticated() }); });
-router.get('/register', (req, res, next) => { res.render('register', { isAuth : req.isAuthenticated() }); });
-router.get('/settings', (req, res, next) => { res.render('settings', { isAuth : req.isAuthenticated(), user : req.user }); });
-
-router.get('/installation', (req, res, next) => { res.render('installation', { isAuth : req.isAuthenticated() }); });
-router.get('/playlists', (req, res, next) => { res.render('playlists', { isAuth : req.isAuthenticated() }); });
+router.get('/login', 	  		(req, res, next) => { res.render('login',    		 { isAuth : req.isAuthenticated() 								 }); });
+router.get('/register', 		(req, res, next) => { res.render('register', 		 { isAuth : req.isAuthenticated() 								 }); });
+router.get('/settings', 		(req, res, next) => { res.render('settings', 		 { isAuth : req.isAuthenticated(), user : req.user }); });
+router.get('/installation', (req, res, next) => { res.render('installation', { isAuth : req.isAuthenticated() 							   }); });
+router.get('/organization', (req, res, next) => { res.render('organization', { isAuth : req.isAuthenticated() 							   }); });
+router.get('/playlists',   	(req, res, next) => { res.render('playlists', 	 { isAuth : req.isAuthenticated() 							   }); });
 
 module.exports = router;

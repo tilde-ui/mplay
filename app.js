@@ -11,9 +11,10 @@ var passport 			= require('passport');
 var localStrategy = require('passport-local').Strategy;
 var grid					= require('gridfs-stream');
 
-var controllers = require('./controllers/index');
-var users 		  = require('./controllers/users');
-var molecules   = require('./controllers/molecules');
+var controllers 	= require('./controllers/index');
+var users 		  	= require('./controllers/users');
+var molecules   	= require('./controllers/molecules');
+var organizations = require('./controllers/organizations');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', controllers);
 app.use('/users', users);
 app.use('/molecules', molecules);
+app.use('/organizations', organizations);
 
 var user = require('./models/user');
 passport.use(new localStrategy(user.authenticate()));
