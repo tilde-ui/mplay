@@ -1,7 +1,7 @@
-var express  = require('express')
-var router   = express.Router();
-var passport = require('passport');
-var user     = require('../models/user');
+var express  		= require('express')
+var router   		= express.Router();
+var passport 		= require('passport');
+var user     		= require('../models/user');
 
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local', (err, user, info) => {
@@ -28,18 +28,34 @@ router.get('/logout', (req, res) => {
 router.post('/register', (req, res, next) => {
 	user.findOne({ username : req.body.username }, (err, found) => {
 		if (found) { res.render('register', { message : 'User exists', isAuth  : req.isAuthenticated() }); }
-		user.register(new user({
-			firstName : req.body.firstName,
-			lastName  : req.body.lastName,
-			username  : req.body.username,
-			email 		: req.body.email,
-			password  : req.body.password,
-			bio				: req.body.bio,
-			auth 			: 'AUTHOR'
-		}), req.body.password, (err, found) => {
-			if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
-			else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
-		});
+		if (req.body.organization) {
+			user.register(new user({
+				firstName 	 : req.body.firstName,
+				lastName  	 : req.body.lastName,
+				username  	 : req.body.username,
+				email 			 : req.body.email,
+				password  	 : req.body.password,
+				bio					 : req.body.bio,
+				organization : req.body.organization,
+				auth 			 	 : 'AUTHOR'
+			}), req.body.password, (err, found) => {
+				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
+			});
+		} else {
+			user.register(new user({
+				firstName : req.body.firstName,
+				lastName  : req.body.lastName,
+				username  : req.body.username,
+				email 		: req.body.email,
+				password  : req.body.password,
+				bio				: req.body.bio,
+				auth 			: 'AUTHOR'
+			}), req.body.password, (err, found) => {
+				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
+			});
+		}
 	});
 });
 

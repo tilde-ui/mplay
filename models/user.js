@@ -4,12 +4,13 @@ var ObjectId 							= mongoose.Schema.Types.ObjectId;
 var admin_types						= ['AUTHOR', 'LOCAL', 'GLOBAL']
 
 var userSchema = new mongoose.Schema({
-	firstName :	 { type: String, 	 required: true  						   },
-	lastName  :	 { type: String, 	 required: true  						   },
-	bio				:	 { type: String, 	 required: false 						   },
-	email			:	 { type: String, 	 lowercase: true, trim: true   },
-	molecules : [{ type: ObjectId, ref: 'molecule' 					     }],
-	auth			:	 { type: String, 	 enum : admin_types 				   } //open to changes...
+	firstName 	 :	 { type: String, 	 required : true  						   			  },
+	lastName  	 :	 { type: String, 	 required : true  						   			  },
+	bio					 :	 { type: String, 	 required : false 						   			  },
+	email				 :	 { type: String, 	 lowercase : true, 		 trim : true      },
+	molecules 	 :  [{ type: ObjectId, ref : 'molecule' 					     			  }],
+	organization :   { type: ObjectId, ref : 'organization', required : false },
+	auth				 :	 { type: String, 	 enum : admin_types 				   				  } //open to changes...
 });
 
 userSchema.plugin(passportLocalMongoose);
