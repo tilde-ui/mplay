@@ -16,5 +16,6 @@ router.get('/register', (req, res, next) => { res.render('register', { isAuth : 
 router.get('/settings', (req, res, next) => { res.render('settings', { isAuth : req.isAuthenticated(), user : req.user }); });
 
 router.get('/installation', (req, res, next) => { res.render('installation', { isAuth : req.isAuthenticated() }); });
+router.get('/playlists', (req, res, next) => { res.render('playlists', { isAuth : req.isAuthenticated() }); });
 
 module.exports = router;

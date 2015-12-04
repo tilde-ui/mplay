@@ -33,3 +33,13 @@ div.scenes {
   border-width: thin;
   border-color: #D4D4D4;
 }
+
+ol.playlist {
+  height: 392.5px;
+  overflow-y: scroll;
+}
+
+a.remove-scene {
+  float: right;
+  color: red;
+}

@@ -1,0 +1,23 @@
+extends layout.jade
+
+block content
+  div.row
+    div.col.m12.s12
+      div.card
+        div.card-content  
+          div.row
+            div.col.m5.s12
+              span.card-title.black-text Create Playlist
+              div.row
+                div.col.m12.s12
+                  ol.collection.playlist(ondrop='handleDrop(event)' ondragover='handleDragOver(event)')
+            div.col.m7.s12
+              span.card-title.black-text My Scenes
+              div.row
+                div.scenes.col.m12.s12
+                  - for (var i = 0; i < 100; i++ ) {
+                      a.modal-trigger(href='#scenePreview')
+                        img.thumbnail(src='/images/caffeine.jpg' draggable='true')
+                  - }
+  include preview.jade
+  include scripts.jade
