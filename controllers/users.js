@@ -60,22 +60,25 @@ router.post('/register', (req, res, next) => {
 });
 
 router.post('/update', (req, res, next) => {
-	var fields = {
-		firstName : req.body.firstName,
-		lastName 	: req.body.lastName,
-		email 		: req.body.email,
-		bio 			: req.body.bio
-	}
-	for (item in fields) { if (fields[item] === '' || fields[item] === null) { delete fields[item] } }
-	user.findByIdAndUpdate(
-		req.user._id,
-		{$set: fields},
-		{safe: true},
-		(err) => {
-			if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
-			else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+	if (!req.user) { res.render('login', 				{ message: 'You must login first!', isAuth : req.isAuthenticated() }); }
+	else {
+		var fields = {
+			firstName : req.body.firstName,
+			lastName 	: req.body.lastName,
+			email 		: req.body.email,
+			bio 			: req.body.bio
 		}
-	)
+		for (item in fields) { if (fields[item] === '' || fields[item] === null) { delete fields[item] } }
+		user.findByIdAndUpdate(
+			req.user._id,
+			{$set: fields},
+			{safe: true},
+			(err) => {
+				if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
+				else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+			}
+		)
+	}
 });
 
 module.exports = router;
