@@ -7,7 +7,7 @@ var fs			 = require('fs');
 
 router.post('/upload_mol', multer({ dest: './public/uploads' }).single('molecule'), (req, res, next) => {
 	var gfs 				= req.app.get('gridfs');
-	var writestream = gfs.createWriteStream({ filename : req.file.filename });
+	var writestream = gfs.createWriteStream({ filename : req.file.originalname});
 	fs.createReadStream(req.file.path).pipe(writestream).on('close', (file) => {
 		var file_id = file._id;
 		fs.unlinkSync(req.file.path);
