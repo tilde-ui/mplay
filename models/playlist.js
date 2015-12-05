@@ -6,7 +6,7 @@ var playlistSchema = new mongoose.Schema({
 	name						:	{type: String,		required: true},
 	descrption			:	{type: String,		required: false},
 	molecules 			:[{type: ObjectId, ref : 'molecule'}],
-	publicly_shared	: {type: Boolean}
+	publiclyShared	: {type: Boolean}
 
 });
 
