@@ -2,26 +2,32 @@ extends layout.jade
 
 block content            
   div.row
-    div.col.m5.s12
+    h3 Welcome, #{user.firstName}.
+    div.col.m4.s12
       div.card
         div.card-content
-          span.card-title.black-text Upload Scene
-          form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
-            div.row
-              div.input-field.col.m12.s12
-                input(name='title' type='text' placeholder='Title')
-              div.input-field.col.m12.s12
-                input(name='category' type='text' placeholder='Category')
-              div.input-field.col.m12.s12
-                textarea(name='description' type='text' placeholder='Description' style='height:100px')
-              div.file-field.input-field.col.m12.s12
-                div.btn
-                  span Browse
-                  input(name='molecule' type='file')
-                div.file-path-wrapper
-                  input.file-path.validate(type="text")
-              div.input-field.col.m12.s12
-                button.btn.col.m12.s12 Submit
-    div.col.m7.s12
-      include scenes.jade
+          span.card-title.black-text Scenes
+          p Upload new molecule coordinate files with scripts to create Scenes, or view your previously uploaded Scenes.
+          br
+          div.row
+            a(href='/uploadScene')
+              button.btn.col.m12.s12 Upload Scene
+    div.col.m4.s12
+      div.card
+        div.card-content
+          span.card-title.black-text Playlists
+          p Create new Playlists from your collection of Scenes, or view your previously created Playlists.
+          br
+          div.row
+            a(href='/playlists')
+              button.btn.col.m12.s12 Create Playlist
+    div.col.m4.s12
+      div.card
+        div.card-content
+          span.card-title.black-text Installation
+          p Manage your Installation by viewing Activity Logs, Settings Playlist schedules and more.
+          br
+          div.row
+            a(href='/installation')
+              button.btn.col.m12.s12 My Installation
   include preview.jade

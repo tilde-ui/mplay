@@ -12,7 +12,7 @@ router.post('/login', (req, res, next) => {
 				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); }
 				else {
 					req.session.user = req.user;
-					res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() });
+					res.render('dashboard', { message : 'success', user : req.user, isAuth : req.isAuthenticated() });
 				}
 			});
 		}

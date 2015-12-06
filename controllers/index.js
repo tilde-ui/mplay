@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/dash', (req, res, next) => {
 	if (!req.user) { res.render('login', { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
-  else 					 { res.render('dashboard', { isAuth : req.isAuthenticated() 																	 }); }
+  else 					 { res.render('dashboard', { user : req.user, isAuth : req.isAuthenticated() 							}); }
 });
 
 router.get('/organization', (req, res, next) => {
@@ -26,9 +26,15 @@ router.get('/installation', (req, res, next) => {
 	if (!req.user) { res.render('login', 		{ message : 'You must login first!', isAuth : req.isAuthenticated }); }
 	else 					 { res.render('installation', { isAuth : req.isAuthenticated() }); }
 });
+
 router.get('/playlists', (req, res, next) => {
 	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
 	else 					 { res.render('playlists', 	 { isAuth : req.isAuthenticated() }); }
+});
+
+router.get('/uploadScene', (req, res, next) => {
+	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
+	else 					 { res.render('uploadScene', 	 { isAuth : req.isAuthenticated() }); }
 });
 
 router.get('/login', (req, res, next) => { res.render('login', { isAuth : req.isAuthenticated() }); });
