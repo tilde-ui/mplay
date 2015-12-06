@@ -36,13 +36,13 @@ img.thumbnail {
 div.scenes {
   overflow-y: scroll;
   max-height: 400px;
-  margin-top: 7.5px;
   border-style: solid;
   border-width: thin;
   border-color: #e0e0e0;
 }
 
 ol.playlist {
+  margin: 0 0;
   height: 400px;
   overflow-y: scroll;
 }

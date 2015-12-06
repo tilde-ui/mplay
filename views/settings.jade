@@ -19,9 +19,9 @@ block content
                 input(name='email' type='text' id='accEmail' value='#{user.email}')
                 label(for='accEmail') Email
             div.row
-              div.col.m12.s12
-                div.input-field
-                  textarea(name='bio' placeholder='Bio' style='height:275px,display:none' value='#{user.bio}')
+              div.input-field.col.m12.s12
+                textarea.materialize-textarea(name='bio' id='accBio' placeholder='Bio' style='height:200px' value='#{user.bio}')
+                label(for='accBio') Bio
             div.row
               div.col.m6
                 a(href='/dash')

@@ -2,36 +2,27 @@ extends layout.jade
 
 block content            
   div.row
-    div.col.m12.s12
+    div.col.m5.s12
       div.card
         div.card-content
-          
-          div.row
-            div.col.m5.s12
-              span.card-title.black-text Upload Scene
-              form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
-                div.row
-                  div.input-field.col.m12.s12
-                    input(name='title' type='text' placeholder='Title')
-                  div.input-field.col.m12.s12
-                    input(name='category' type='text' placeholder='Category')
-                  div.input-field.col.m12.s12
-                    textarea(name='description' type='text' placeholder='Description' style='height:100px')
-                  div.file-field.input-field.col.m12.s12
-                    div.btn
-                      span Browse
-                      input(name='molecule' type='file')
-                    div.file-path-wrapper
-                      input.file-path.validate(type="text")
-                  div.input-field.col.m12.s12
-                    button.btn.col.m12.s12 Submit
-            div.col.m7.s12
-              span.card-title.black-text My Scenes
-              div.row
-                div.scenes.col.m12.s12
-                  - for (var i = 0; i < 100; i++ ) {
-                      a.modal-trigger(href='#scenePreview')
-                        img.thumbnail(src='/images/caffeine.jpg')
-                  - }
+          span.card-title.black-text Upload Scene
+          form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
+            div.row
+              div.input-field.col.m12.s12
+                input(name='title' type='text' placeholder='Title')
+              div.input-field.col.m12.s12
+                input(name='category' type='text' placeholder='Category')
+              div.input-field.col.m12.s12
+                textarea(name='description' type='text' placeholder='Description' style='height:100px')
+              div.file-field.input-field.col.m12.s12
+                div.btn
+                  span Browse
+                  input(name='molecule' type='file')
+                div.file-path-wrapper
+                  input.file-path.validate(type="text")
+              div.input-field.col.m12.s12
+                button.btn.col.m12.s12 Submit
+    div.col.m7.s12
+      include scenes.jade
   include preview.jade
   include scripts.jade
