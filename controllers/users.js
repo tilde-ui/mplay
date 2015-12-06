@@ -1,7 +1,7 @@
-var express  = require('express')
-var router   = express.Router();
-var passport = require('passport');
-var user     = require('../models/user');
+var express  		= require('express')
+var router   		= express.Router();
+var passport 		= require('passport');
+var user     		= require('../models/user');
 
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local', (err, user, info) => {
@@ -28,38 +28,57 @@ router.get('/logout', (req, res) => {
 router.post('/register', (req, res, next) => {
 	user.findOne({ username : req.body.username }, (err, found) => {
 		if (found) { res.render('register', { message : 'User exists', isAuth  : req.isAuthenticated() }); }
-		user.register(new user({
-			firstName : req.body.firstName,
-			lastName  : req.body.lastName,
-			username  : req.body.username,
-			email 		: req.body.email,
-			password  : req.body.password,
-			bio				: req.body.bio,
-			auth 			: 'AUTHOR'
-		}), req.body.password, (err, found) => {
-			if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
-			else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
-		});
+		if (req.body.organization) {
+			user.register(new user({
+				firstName 	 : req.body.firstName,
+				lastName  	 : req.body.lastName,
+				username  	 : req.body.username,
+				email 			 : req.body.email,
+				password  	 : req.body.password,
+				bio					 : req.body.bio,
+				organization : req.body.organization,
+				auth 			 	 : 'AUTHOR'
+			}), req.body.password, (err, found) => {
+				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
+			});
+		} else {
+			user.register(new user({
+				firstName : req.body.firstName,
+				lastName  : req.body.lastName,
+				username  : req.body.username,
+				email 		: req.body.email,
+				password  : req.body.password,
+				bio				: req.body.bio,
+				auth 			: 'AUTHOR'
+			}), req.body.password, (err, found) => {
+				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
+			});
+		}
 	});
 });
 
 router.post('/update', (req, res, next) => {
-	var fields = {
-		firstName : req.body.firstName,
-		lastName 	: req.body.lastName,
-		email 		: req.body.email,
-		bio 			: req.body.bio
-	}
-	for (item in fields) { if (fields[item] === '' || fields[item] === null) { delete fields[item] } }
-	user.findByIdAndUpdate(
-		req.user._id,
-		{$set: fields},
-		{safe: true},
-		(err) => {
-			if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
-			else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+	if (!req.user) { res.render('login', 				{ message: 'You must login first!', isAuth : req.isAuthenticated() }); }
+	else {
+		var fields = {
+			firstName : req.body.firstName,
+			lastName 	: req.body.lastName,
+			email 		: req.body.email,
+			bio 			: req.body.bio
 		}
-	)
+		for (item in fields) { if (fields[item] === '' || fields[item] === null) { delete fields[item] } }
+		user.findByIdAndUpdate(
+			req.user._id,
+			{$set: fields},
+			{safe: true},
+			(err) => {
+				if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
+				else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+			}
+		)
+	}
 });
 
 module.exports = router;
