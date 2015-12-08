@@ -1,0 +1,49 @@
+extend layout.jade
+
+html
+  body
+    | import React, {Component} from 'react';
+    | import {Link} from 'react-router';
+    | class Organizations extends Component {
+    | render() {
+    | return (
+    div.card
+      div.card-content
+        span.card-title black-text Organization Management
+        div.row
+          table
+            thead
+              tr
+                th Organization Name
+                th Date Created
+                th Edit
+                th Delete
+            tbody
+              tr
+                td Org 1
+                td 1/1/2015
+                td
+                  button.btn Edit
+                td
+                  button.btn Delete
+              tr
+                td Org 2
+                td 9/5/2015
+                td
+                  button.btn Edit
+                td
+                  button.btn Delete
+              tr
+                td Org 3
+                td 11/2/2015
+                td
+                  button.btn Edit
+                td
+                  button.btn Delete
+        div.row
+          link(to='/createOrganization')
+          button.btn Create New Organization
+    |     )
+    |   }
+    | }
+    | export default Organizations;

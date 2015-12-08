@@ -1,0 +1,60 @@
+html
+  body
+    | import React, {Component} from 'react';
+    | class AdvancedSearch extends Component {
+    | render() {
+    | return (
+    div.card
+      div.card-content
+        span.card-title.black-text Advanced Search
+        div.row
+          div.input-field.col.m3
+            input(classname='validate', type='text', placeholder='Keywords')
+          div(classname='input-field col m2')
+            input(classname='validate', type='text', placeholder='Author')
+          div(classname='input-field col m2')
+            select(classname='browser-default', defaultvalue='1')
+              option(value='1') Molecule
+              option(value='2') Scene
+              option(value='3') Playlist
+          div(classname='input-field col m3')
+            input(classname='datepicker', type='date')
+          div(classname='input-field col m2')
+            button(classname='btn', style='{{width:') Search
+        div(classname='row')
+          table
+            thead
+              tr
+                th Molecule
+                th Author
+                th Date Uploaded
+                th Import
+                th Delete
+            tbody
+              tr
+                td Molecule 1
+                td Steve
+                td 1/1/2015
+                td
+                  button(classname='btn') Import
+                td
+                  button(classname='btn') Delete
+              tr
+                td Scene 2
+                td Sue
+                td 9/5/2015
+                td
+                  button(classname='btn') Import
+                td
+                  button(classname='btn') Delete
+              tr
+                td Playlist 1
+                td John
+                td 11/2/2015
+                td
+                  button(classname='btn') Import
+                td
+    |     )
+    |   }
+    | }
+    | export default AdvancedSearch;

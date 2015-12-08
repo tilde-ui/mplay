@@ -1,0 +1,45 @@
+html
+  body
+    | import React, {Component} from 'react';
+    | import {Link} from 'react-router';
+    | class CreateOrganization extends Component {
+    | render() {
+    | return (
+    div(classname='row')
+      div(classname='col m8 offset-m2')
+        div(classname='card')
+          div(classname='card-content')
+            span(classname='card-title black-text') Create Organization
+            div(classname='row')
+              div(classname='col m12')
+                div(classname='input-field')
+                  input(type='text', placeholder='Enter Organization Name')
+              div(classname='col m12')
+                p(classname='center-align') Select Users for Local Administrator
+                form(action='#')
+                  p
+                    input#user1(type='checkbox')
+                    label(htmlfor='user1') User 1
+                  p
+                    input#user2(type='checkbox')
+                    label(htmlfor='user2') User 2
+                  p
+                    input#user3(type='checkbox')
+                    label(htmlfor='user3') User 3
+                  p
+                    input#user4(type='checkbox')
+                    label(htmlfor='user4') User 4
+                  p
+                    input#user5(type='checkbox')
+                    label(htmlfor='user5') User 5
+            div(classname='row')
+              div(classname='col m6')
+                link(to='/organizations')
+                button(classname='btn col m12') Save Changes
+              div(classname='col m6')
+                link(to='/organizations')
+                button(classname='btn col m12') Cancel
+    |     )
+    |   }
+    | }
+    | export default CreateOrganization;
