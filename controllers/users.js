@@ -4,19 +4,22 @@ var passport 		= require('passport');
 var user     		= require('../models/user');
 
 router.post('/login', (req, res, next) => {
-	passport.authenticate('local', (err, user, info) => {
-		if      (err)   { res.render('login', { message : err, isAuth : req.isAuthenticated() }); }
-		else if (!user) { res.render('login', { message : 'No user/Incorrect password', isAuth : req.isAuthenticated() }); }
-		else {
-			req.logIn(user, (err) => {
-				if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); }
-				else {
-					req.session.user = req.user;
-					res.render('dashboard', { message : 'success', user : req.user, isAuth : req.isAuthenticated() });
-				}
-			});
-		}
-	})(req, res, next);
+	if (req.session.user) { res.redirect('/dash'); }
+	else {
+		passport.authenticate('local', (err, user, info) => {
+			if      (err)   { res.render('login', { message : err, isAuth : req.isAuthenticated() }); }
+			else if (!user) { res.render('login', { message : 'No user/Incorrect password', isAuth : req.isAuthenticated() }); }
+			else {
+				req.logIn(user, (err) => {
+					if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); }
+					else {
+						req.session.user = req.user;
+						res.render('dashboard', { message : 'success', user : req.user, isAuth : req.isAuthenticated() });
+					}
+				});
+			}
+		})(req, res, next);
+	}
 });
 
 router.get('/logout', (req, res) => {
