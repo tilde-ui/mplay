@@ -2,9 +2,9 @@ body {
   background-color: #cfd8dc;
 }
 
-nav {
+/*nav {
   margin-bottom: 15px;
-}
+}*/
 
 footer {
   background-color: #cfd8dc;
@@ -45,9 +45,36 @@ ol.playlist {
   margin: 0 0;
   height: 400px;
   overflow-y: scroll;
+  padding: 0;
 }
 
 a.remove-scene {
   float: right;
   color: red;
+}
+
+span.playlist-placeholder {
+  padding: 15px;
+  color: #bbb;
+}
+
+div.playlist-placeholder {
+  height: 100%;
+}
+
+div.message {
+  margin: 0;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+.placeholder {
+  color: #bbb;
+}
+
+.container {
+  margin-top: 15px;
 }

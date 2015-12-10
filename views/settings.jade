@@ -6,7 +6,6 @@ block content
       div.card
         div.card-content
           span.card-title.black-text Edit Account
-          p #{message}
           form(action='/users/update' method='post')
             div.row
               div.input-field.col.m12.s12
@@ -20,7 +19,7 @@ block content
                 label(for='accEmail') Email
             div.row
               div.input-field.col.m12.s12
-                textarea.materialize-textarea(name='bio' id='accBio' placeholder='Bio' style='height:200px' value='#{user.bio}')
+                textarea.materialize-textarea(name='bio' id='accBio' placeholder='Bio' style='height:150px' value='#{user.bio}')
                 label(for='accBio') Bio
             div.row
               div.col.m6

@@ -3,7 +3,7 @@ var router  		 = express.Router();
 var organization = require('../models/organization');
 
 router.get('/', (req, res, next) => {
-	if   (req.session.user) { res.render('dashboard', { isAuth : req.isAuthenticated() }); }
+	if   (req.session.user) { res.render('dashboard', {  user : req.user, isAuth : req.isAuthenticated() }); }
 	else 									  { res.render('login', 		{ isAuth : req.isAuthenticated() }); }
 });
 
