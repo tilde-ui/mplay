@@ -43,7 +43,7 @@ router.post('/register', (req, res, next) => {
 				auth 			 	 : 'AUTHOR'
 			}), req.body.password, (err, found) => {
 				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
-				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
+				else 		 { res.render('login',    { message : 'Registration Success', isAuth  : req.isAuthenticated() }); }
 			});
 		} else {
 			user.register(new user({
@@ -77,8 +77,8 @@ router.post('/update', (req, res, next) => {
 			{$set: fields},
 			{safe: true},
 			(err) => {
-				if (err) { res.render('settings',  { message : 'error', 	 isAuth : req.isAuthenticated() }); }
-				else 		 { res.render('dashboard', { message : 'success', isAuth : req.isAuthenticated() }); }
+				if (err) { res.render('settings',  { message : 'error',	 isAuth : req.isAuthenticated() }); }
+				else 		 { res.render('dashboard', { message : 'success', user : req.user, isAuth : req.isAuthenticated() }); }
 			}
 		)
 	}

@@ -5,9 +5,7 @@ block content
     div.col.m8.offset-m2
       div.card
         div.card-content
-          span.card-title.black-text Organization Registration 
-          if message
-            p #{message}
+          span.card-title.black-text Organization Registration
           form(action='/organizations/register', method='post')
             div.row
               div.input-field.col.m12.s12

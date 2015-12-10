@@ -7,6 +7,9 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     include navbar.jade
+    if message
+      div.card.blue-grey.white-text.message
+        h6 #{message}
     div.container
       block content
     footer
