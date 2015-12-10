@@ -22,6 +22,8 @@ nav
             li
               a(href='/users/logout')= item
       ul.side-nav#slide-out
+        li
+          a(href='/dash') Home
         for item in navOptions
           if item === 'Account'
             li
