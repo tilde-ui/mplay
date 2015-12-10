@@ -14,6 +14,7 @@ var grid					= require('gridfs-stream');
 var controllers 	= require('./controllers/index');
 var users 		  	= require('./controllers/users');
 var molecules   	= require('./controllers/molecules');
+var scenes   			= require('./controllers/scenes');
 var organizations = require('./controllers/organizations');
 
 var app = express();
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', controllers);
 app.use('/users', users);
 app.use('/molecules', molecules);
+app.use('/scenes', scenes);
 app.use('/organizations', organizations);
 
 var user = require('./models/user');

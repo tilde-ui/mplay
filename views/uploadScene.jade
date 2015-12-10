@@ -6,7 +6,7 @@ block content
       div.card
         div.card-content
           span.card-title.black-text Upload Scene
-          form(action='/molecules/upload_mol' method='post' enctype='multipart/form-data')
+          form(action='/scenes/upload' method='post' enctype='multipart/form-data')
             div.row
               div.input-field.col.m12.s12
                 input(name='title' type='text' placeholder='Title')
@@ -19,7 +19,13 @@ block content
                   span Browse
                   input(name='molecule' type='file')
                 div.file-path-wrapper
-                  input.file-path.validate(type="text")
+                  input.file-path.validate(type="text" placeholder="Molecule")
+              div.file-field.input-field.col.m12.s12
+                div.btn
+                  span Browse
+                  input(name='script' type='file')
+                div.file-path-wrapper
+                  input.file-path.validate(type="text" placeholder="Script")
               div.input-field.col.m12.s12
                 button.btn.col.m12.s12 Submit
     div.col.m7.s12
