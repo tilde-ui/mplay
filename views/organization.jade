@@ -6,8 +6,23 @@ block content
       div.card
         div.card-content
           span.card-title.black-text Organization Management
+              
+          div.organizations
+            table.striped
+              thead
+                tr
+                  th Name
+              tbody
+                each org in orgs
+                  tr
+                    td= org.name
+
+              
           div.row
-            div.col.m6.s12.offset-m3
+            div.col.m6.s12
               a(href='/createOrganization')
                 button.btn.col.m12.s12 Create Organization
+            div.col.m6.s12
+              a(href='/dash')
+                button.btn.col.m12.s12 Cancel
           

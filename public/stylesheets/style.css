@@ -48,6 +48,17 @@ ol.playlist {
   padding: 0;
 }
 
+ul.organizations {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+div.organizations {
+  height: 350px;
+  overflow-y: scroll;
+  margin-bottom: 15px;
+}
+
 a.remove-scene {
   float: right;
   color: red;

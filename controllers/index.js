@@ -17,7 +17,7 @@ router.get('/organization', (req, res, next) => {
 	if (!req.user) { res.render('login', 				{ message: 'You must login first!', isAuth : req.isAuthenticated() }); }
 	else 					 {
 		organization.find((err, orgs) => {
-			res.render('createOrganization', { user : req.user, orgs : orgs, isAuth : req.isAuthenticated() });
+			res.render('organization', { user : req.user, orgs : orgs, isAuth : req.isAuthenticated() });
 		});
 	}
 });

@@ -10,8 +10,12 @@ router.post('/register', (req, res, next) => {
 				name 				: req.body.name,
 				description : req.body.description
 			}).save((err, org) => {
-				if (err) { res.render('organization', { message : 'Error', 										isAuth : req.isAuthenticated() }); }
-				else 		 { res.render('dashboard', 		{ message : 'Organization registered!', user : req.user, isAuth : req.isAuthenticated() }); } 
+				if (err) { res.render('createOrganization', { message : 'Error', 										isAuth : req.isAuthenticated() }); }
+				else 		 {
+					organization.find((err, orgs) => {
+						res.render('organization', { message : 'Organization registered!', user : req.user, orgs : orgs, isAuth : req.isAuthenticated() });
+					});
+				}
 			});
 		}
 	});
