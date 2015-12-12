@@ -8,9 +8,10 @@ nav
       i.material-icons menu
     if isAuth  
       ul.right.hide-on-med-and-down
-        //- li
-        //-   i.material-icons prefix account_circle
-        //-   input(type='text', placeholder='Search')
+        li
+          div.input-field.search
+            i.material-icons.prefix search
+            input.search(type='text', placeholder='Search Molecules')
         for item in navOptions
           if item === 'Account'
             li
@@ -27,6 +28,10 @@ nav
       ul.side-nav#slide-out
         li
           a(href='/dash') Home
+        li
+          div.input-field.search
+            i.material-icons.prefix search
+            input.search(type='text', placeholder='Search Scenes')
         for item in navOptions
           if item === 'Account'
             li
