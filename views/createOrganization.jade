@@ -1,0 +1,22 @@
+extends layout.jade
+
+block content     
+  div.row
+    div.col.m8.offset-m2
+      div.card
+        div.card-content
+          span.card-title.black-text Organization Registration
+          form(action='/organizations/register', method='post')
+            div.row
+              div.input-field.col.m12.s12
+                input.validate(name='name', type='text', placeholder='Name')
+              
+              div.input-field.col.m12.s12
+                textarea(name='description', placeholder='Description', style='height:150px')
+            
+            div.row
+              div.col.m6.s6
+                button.btn.col.m12.s12 Register
+              div.col.m6.s6
+                a(href='/organization')
+                  button.btn.col.m12.s12(type='button') Cancel

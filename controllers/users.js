@@ -8,13 +8,13 @@ router.post('/login', (req, res, next) => {
 	else {
 		passport.authenticate('local', (err, user, info) => {
 			if      (err)   { res.render('login', { message : err, isAuth : req.isAuthenticated() }); }
-			else if (!user) { res.render('login', { message : 'No user/Incorrect password', isAuth : req.isAuthenticated() }); }
+			else if (!user) { res.render('login', { message : 'No User/Incorrect password', isAuth : req.isAuthenticated() }); }
 			else {
 				req.logIn(user, (err) => {
 					if (err) { res.render('login', { message : err,	isAuth : req.isAuthenticated() }); }
 					else {
 						req.session.user = req.user;
-						res.render('dashboard', { message : 'success', user : req.user, isAuth : req.isAuthenticated() });
+						res.render('dashboard', { message : 'Login Success', user : req.user, isAuth : req.isAuthenticated() });
 					}
 				});
 			}

@@ -3,32 +3,39 @@ extends layout.jade
 block content            
   div.row
     h3 Welcome, #{user.firstName}.
-    
-    div.col.m4.s12
+    div.col.l6.m6.s12
       div.card
         div.card-content
           span.card-title.black-text Scenes
-          p Upload new molecule coordinate files with scripts to create Scenes, or view your previously uploaded Scenes.
+          p.dashboard Upload new molecule coordinate files with scripts to create Scenes, or view your previously uploaded Scenes.
           br
           div.row
             a(href='/uploadScene')
               button.btn.col.m12.s12 Upload Scene
-    div.col.m4.s12
+    div.col.l6.m6.s12
       div.card
         div.card-content
           span.card-title.black-text Playlists
-          p Create new Playlists from your collection of Scenes, or view your previously created Playlists.
+          p.dashboard Create new Playlists from your collection of Scenes, or view your previously created Playlists.
           br
           div.row
             a(href='/playlists')
               button.btn.col.m12.s12 Create Playlist
-    div.col.m4.s12
+    div.col.l6.m6.s12
       div.card
         div.card-content
           span.card-title.black-text Installation
-          p Manage your Installation by viewing Activity Logs, Settings Playlist schedules and more.
+          p.dashboard Manage your Installation by viewing Activity Logs, Settings Playlist schedules and more.
           br
           div.row
             a(href='/installation')
               button.btn.col.m12.s12 My Installation
-  include preview.jade
+    div.col.l6.m6.s12
+      div.card
+        div.card-content
+          span.card-title.black-text Organization
+          p.dashboard Manage existing Organizations in the Molecular Playground community or create new Organizations.
+          br
+          div.row
+            a(href='/organization')
+              button.btn.col.m12.s12 Organizations

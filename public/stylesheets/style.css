@@ -53,6 +53,10 @@ a.remove-scene {
   color: red;
 }
 
+a.modal-trigger {
+  color: black;
+}
+
 span.playlist-placeholder {
   padding: 15px;
   color: #bbb;
@@ -65,6 +69,11 @@ div.playlist-placeholder {
 div.message {
   margin: 0;
   text-align: center;
+}
+
+p.dashboard {
+  height: 90px;
+  overflow-y: scroll;
 }
 
 h1, h2, h3, h4, h5, h6 {

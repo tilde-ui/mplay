@@ -1,6 +1,7 @@
 var express 		 = require('express');
 var router  		 = express.Router();
 var organization = require('../models/organization');
+var scenes			 = require('../models/scene');
 
 router.get('/', (req, res, next) => {
 	if   (req.session.user) { res.render('dashboard', {  user : req.user, isAuth : req.isAuthenticated() }); }
@@ -9,12 +10,17 @@ router.get('/', (req, res, next) => {
 
 router.get('/dash', (req, res, next) => {
 	if (!req.user) { res.render('login', { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
-  else 					 { res.render('dashboard', { user : req.user, isAuth : req.isAuthenticated() 							}); }
+  else 					 { res.render('dashboard', { user : req.user, isAuth : req.isAuthenticated() 							}); console.log(req.user);}
 });
 
 router.get('/organization', (req, res, next) => {
 	if (!req.user) { res.render('login', 				{ message: 'You must login first!', isAuth : req.isAuthenticated() }); }
 	else 					 { res.render('organization', { isAuth : req.isAuthenticated() 																	 }); }
+});
+
+router.get('/createOrganization', (req, res, next) => {
+	if (!req.user) { res.render('login', 				{ message: 'You must login first!', isAuth : req.isAuthenticated() }); }
+	else 					 { res.render('createOrganization', { isAuth : req.isAuthenticated() 														}); }
 });
 
 router.get('/settings', (req, res, next) => {
@@ -34,7 +40,20 @@ router.get('/playlists', (req, res, next) => {
 
 router.get('/uploadScene', (req, res, next) => {
 	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
-	else 					 { res.render('uploadScene', 	 { isAuth : req.isAuthenticated() }); }
+	else 					 {
+		console.log(req.user);
+		if (req.user.scenes) {
+			scenes.find({_author: req.user}, (err, userScenes) => {
+				res.render('uploadScene', 	 {
+					scenes : userScenes,
+					isAuth : req.isAuthenticated()
+				});
+			})
+		}
+		else {
+			res.render('uploadScene', {isAuth : req.isAuthenticated()});
+		}
+	}
 });
 
 router.get('/login', (req, res, next) => { res.render('login', { isAuth : req.isAuthenticated() }); });
