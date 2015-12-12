@@ -35,13 +35,24 @@ router.get('/installation', (req, res, next) => {
 
 router.get('/playlists', (req, res, next) => {
 	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
-	else 					 { res.render('playlists', 	 { isAuth : req.isAuthenticated() }); }
+	else 					 {
+		if (req.user.scenes) {
+			scenes.find({_author: req.user}, (err, userScenes) => {
+				res.render('playlists', 	 {
+					scenes : userScenes,
+					isAuth : req.isAuthenticated()
+				});
+			})
+		}
+		else {
+			res.render('uploadScene', {isAuth : req.isAuthenticated()});
+		}
+	}
 });
 
 router.get('/uploadScene', (req, res, next) => {
 	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
 	else 					 {
-		console.log(req.user);
 		if (req.user.scenes) {
 			scenes.find({_author: req.user}, (err, userScenes) => {
 				res.render('uploadScene', 	 {
