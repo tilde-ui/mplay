@@ -6,8 +6,7 @@ div.card
         ul.collection
           each s in scenes
             a.modal-trigger(href='#scenePreview', onClick='loadPreview()')
-              li.collection-item= s.title
-        //- - for (var i = 0; i < 100; i++ ) {
-        //-     a.modal-trigger(href='#scenePreview')
-        //-       img.thumbnail(src='/images/caffeine.jpg')
-        //- - }
+              //- - createSceneItem(s)
+              li.collection-item.scene(data-scene='#{JSON.stringify(s)}')
+                div= s.title
+script(src='/javascripts/scene.js')

@@ -59,6 +59,10 @@ div.organizations {
   margin-bottom: 15px;
 }
 
+a.add-scene {
+  float: right;
+}
+
 a.remove-scene {
   float: right;
   color: red;

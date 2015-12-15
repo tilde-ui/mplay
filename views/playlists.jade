@@ -2,7 +2,7 @@ extends layout.jade
 
 block content
   div.row
-    div.col.m5.s12
+    div.col.m6.s12
       div.card
         div.card-content
           span.card-title.black-text Create Playlist
@@ -11,7 +11,10 @@ block content
               ol.collection.playlist(ondrop='handleDrop(event)' ondragover='handleDragOver(event)')
                 //- div.valign-wrapper.playlist-placeholder
                 //-   h5.center-align.valign.placeholder Drag Scenes here to create a Playlist.
-    div.col.m7.s12
+            div.col.m12.s12
+              button.btn.col.m12.s12 Create
+    div.col.m6.s12
       include scenes.jade
   include preview.jade  
   script(src='/javascripts/createPlaylist.js')
+  
