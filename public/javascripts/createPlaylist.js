@@ -26,8 +26,15 @@ function handleRemove(e) {
 
 function addToPlaylist(e) {
   var sceneData = $(e.target).parent().parent().parent()[0].dataset.scene;
-  console.log(sceneData);
+  console.log(sceneData.replace(' ', '_'));
   $('ol.playlist').append(
-    '<li class="collection-item" data-scene="' + sceneData + '"><div>' + JSON.parse(sceneData).title + '<a href="#" class="remove-scene" onClick="handleRemove(event)" title="Remove Scene"><i class="material-icons">remove_circle_outline</i></a></div></li>'
+    '<li class="collection-item" data-scene=' + sceneData.replace(' ', '_') + '><div>' + JSON.parse(sceneData).title + '<a href="#" class="remove-scene" onClick="handleRemove(event)" title="Remove Scene"><i class="material-icons">remove_circle_outline</i></a></div></li>'
   )
 }
+
+// function createPlaylist() {
+//   var scenes = $('ol.playlist li');
+//   scenes.each(function(index) {
+//     console.log(scenes[index])
+//   })
+// }

@@ -4,7 +4,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var playlistSchema = new mongoose.Schema({
 
 	name						:	{type: String,		required: true},
-	descrption			:	{type: String,		required: false},
+	description			:	{type: String,		required: false},
 	molecules 			:[{type: ObjectId, ref : 'molecule'}],
 	publiclyShared	: {type: Boolean}
 

@@ -43,7 +43,7 @@ div.scenes {
 
 ol.playlist {
   margin: 0 0;
-  height: 400px;
+  max-height: 400px;
   overflow-y: scroll;
   padding: 0;
 }
@@ -60,6 +60,10 @@ div.organizations {
 }
 
 a.add-scene {
+  float: right;
+}
+
+a.preview-scene {
   float: right;
 }
 

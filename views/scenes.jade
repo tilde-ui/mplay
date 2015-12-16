@@ -5,8 +5,7 @@ div.card
       div.col.m12.s12
         ul.collection
           each s in scenes
-            a.modal-trigger(href='#scenePreview', onClick='loadPreview()')
-              //- - createSceneItem(s)
-              li.collection-item.scene(data-scene='#{JSON.stringify(s)}')
-                div= s.title
+            li.collection-item.scene(data-scene='#{JSON.stringify(s)}')
+              div= s.title
+script(type='text/javascript' src='/jsmol/JSmol.min.js')
 script(src='/javascripts/scene.js')

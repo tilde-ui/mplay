@@ -15,6 +15,7 @@ var controllers 	= require('./controllers/index');
 var users 		  	= require('./controllers/users');
 var molecules   	= require('./controllers/molecules');
 var scenes   			= require('./controllers/scenes');
+var playlists     = require('./controllers/playlists');
 var organizations = require('./controllers/organizations');
 
 var app = express();
@@ -42,6 +43,7 @@ app.use('/', controllers);
 app.use('/users', users);
 app.use('/molecules', molecules);
 app.use('/scenes', scenes);
+app.use('/playlists', playlists);
 app.use('/organizations', organizations);
 
 var user = require('./models/user');
