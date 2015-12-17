@@ -6,23 +6,22 @@ block content
       div.card
         div.card-content
           span.card-title.black-text Create Playlist
-          form(action='/playlists/create' method='post')
-            div.row
-              div.input-field.col.m12.s12
-                input(name='name' type='text' placeholder='Title')
-              div.input-field.col.m12.s12
-                textarea(name='description' type='text' placeholder='Description' style='height:100px')
-              div.col.m12.s12
-                ol.collection.playlist(ondrop='handleDrop(event)' ondragover='handleDragOver(event)')
-                  li.collection-item.placeholder Playlist Empty
-                  //- div.valign-wrapper.playlist-placeholder
-                  //-   h5.center-align.valign.placeholder Drag Scenes here to create a Playlist.
-              p.col.m12.s12(style="margin-top:20px")
-                input(type="checkbox" name='public' id="public")
-                label(for="public") Make Public
-            div.row
-              div.col.m12.s12
-                button.btn.col.m12.s12 Create
+          div.row
+            div.input-field.col.m12.s12
+              input(name='title' type='text' placeholder='Title')
+            div.input-field.col.m12.s12
+              textarea(name='description' type='text' placeholder='Description' style='height:100px')
+            div.col.m12.s12
+              ol.collection.playlist(ondrop='handleDrop(event)' ondragover='handleDragOver(event)')
+                li.collection-item.placeholder Playlist Empty
+                //- div.valign-wrapper.playlist-placeholder
+                //-   h5.center-align.valign.placeholder Drag Scenes here to create a Playlist.
+            p.col.m12.s12(style="margin-top:20px")
+              input(type="checkbox" name='public' id="public")
+              label(for="public") Make Public
+          div.row
+            div.col.m12.s12
+              button.btn.col.m12.s12(onClick='createPlaylist()') Create
     div.col.m6.s12
       include scenes.jade
   include preview.jade  

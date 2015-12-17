@@ -4,8 +4,8 @@ div.card
     div.row
       div.col.m12.s12
         ul.collection
-          each s in scenes
-            li.collection-item.scene(data-scene='#{JSON.stringify(s)}')
+          each s, index in scenes
+            li.collection-item.scene(data-scene='#{JSON.stringify(s)}', data-index='#{index}')
               div= s.title
 script(type='text/javascript' src='/jsmol/JSmol.min.js')
 script(src='/javascripts/scene.js')
