@@ -2,6 +2,7 @@ var express  		= require('express')
 var router   		= express.Router();
 var passport 		= require('passport');
 var user     		= require('../models/user');
+var organization = require('../models/organization');
 
 router.post('/login', (req, res, next) => {
 	if (req.session.user) { res.redirect('/dash'); }
@@ -30,7 +31,12 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', (req, res, next) => {
 	user.findOne({ username : req.body.username }, (err, found) => {
-		if (found) { res.render('register', { message : 'User exists', isAuth  : req.isAuthenticated() }); }
+		if (found) {
+			console.log('1');
+			organization.find((err, orgs) => {
+				res.render('register', { message : 'User already exists', orgs : orgs, isAuth : req.isAuthenticated() });
+			});
+		}
 		if (req.body.organization) {
 			user.register(new user({
 				firstName 	 : req.body.firstName,
@@ -42,7 +48,12 @@ router.post('/register', (req, res, next) => {
 				organization : req.body.organization,
 				auth 			 	 : 'AUTHOR'
 			}), req.body.password, (err, found) => {
-				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				if (err) {
+					console.log('2');
+					organization.find((err, orgs) => {
+						res.render('register', { message : err, orgs : orgs, isAuth : req.isAuthenticated() });
+					});
+				}
 				else 		 { res.render('login',    { message : 'Registration Success', isAuth  : req.isAuthenticated() }); }
 			});
 		} else {
@@ -55,7 +66,12 @@ router.post('/register', (req, res, next) => {
 				bio				: req.body.bio,
 				auth 			: 'AUTHOR'
 			}), req.body.password, (err, found) => {
-				if (err) { res.render('register', { message : err, isAuth  : req.isAuthenticated() });       }
+				if (err) {
+					console.log('3');
+					organization.find((err, orgs) => {
+						res.render('register', { message : err, orgs : orgs, isAuth : req.isAuthenticated() });
+					});
+				}
 				else 		 { res.render('login',    { message : 'Success', isAuth  : req.isAuthenticated() }); }
 			});
 		}

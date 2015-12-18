@@ -1,7 +1,13 @@
+function getScript(scene) {
+  $('#previewTitle').html(scene.title);
+  $('#previewDesc').html(scene.description);
+  loadPreview();
+}
+
 function loadPreview() {
   $.get('/exampleData/caffeine_script.txt', function(data) {
     Jmol._isAsync = false;
-    console.log(data);
+
     var jmolApplet0;
 
     var Info = {

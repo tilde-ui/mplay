@@ -40,6 +40,14 @@ function addToPlaylist(e) {
   $('ol.playlist').append(
     '<li class="collection-item" data-index=' + sceneIndex + '><div>' + JSON.parse(sceneData).title + '<a href="#" class="remove-scene" onClick="handleRemove(event)" title="Remove Scene"><i class="material-icons">remove_circle_outline</i></a></div></li>'
   )
+
+  var scenes = $('ol.playlist li');
+  var playlist = [];
+  scenes.each(function(index) {
+    playlist.push(this.dataset.index);
+  })
+
+  $('#pl').val(JSON.stringify(playlist));
 }
 
 function createPlaylist() {

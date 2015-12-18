@@ -48,6 +48,11 @@ ol.playlist {
   padding: 0;
 }
 
+ul.playlists {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 ul.organizations {
   height: 350px;
   overflow-y: scroll;

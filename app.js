@@ -17,6 +17,7 @@ var molecules   	= require('./controllers/molecules');
 var scenes   			= require('./controllers/scenes');
 var playlists     = require('./controllers/playlists');
 var organizations = require('./controllers/organizations');
+var search				= require('./controllers/search');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/molecules', molecules);
 app.use('/scenes', scenes);
 app.use('/playlists', playlists);
 app.use('/organizations', organizations);
+app.use('/search', search);
 
 var user = require('./models/user');
 passport.use(new localStrategy(user.authenticate()));

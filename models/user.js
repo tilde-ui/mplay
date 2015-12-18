@@ -10,6 +10,7 @@ var userSchema = new mongoose.Schema({
 	email				 :	 { type: String, 	 lowercase : true, 		 trim : true      },
 	molecules 	 :  [{ type: ObjectId, ref : 'molecule' 					     			  }],
 	scenes 	 		 :  [{ type: ObjectId, ref : 'scene' 					     			  		}],
+	playlists    :  [{ type: ObjectId, ref : 'playlist'                       }],
 	organization :   { type: ObjectId, ref : 'organization', required : false },
 	auth				 :	 { type: String, 	 enum : admin_types 				   				  } //open to changes...
 });

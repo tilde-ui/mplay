@@ -1,0 +1,22 @@
+extend layout
+
+block content
+  div.row
+    div.col.m8.s12.offset-m2
+      div.card
+        div.card-content    
+          span.card-title.black-text My Playlists
+          div.row
+            div.col.m12.s12
+              ul.collection.playlists
+                each p in playlists
+                  li.collection-item
+                    div= p.name
+                    
+          div.row
+            div.col.m6.s6
+              a(href='/createPlaylist')
+                button.btn.col.m12.s12 Create Playlist
+            div.col.m6.s6
+              a(href='/dash')
+                button.btn.col.m12.s12 Cancel

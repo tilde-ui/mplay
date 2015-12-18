@@ -30,8 +30,7 @@ block content
                 textarea(name='bio' placeholder='Bio', style='height:150px')
               
               div.input-field.col.m6.s12
-                select.browser-default(name='organization', defaultValue='')
-                  option(value=)
+                select.browser-default(name='organization', defaultValue='1')
                   for org in orgs
                     option(value=org._id)=org.name 
               

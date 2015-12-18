@@ -2,6 +2,7 @@ var express 		 = require('express');
 var router  		 = express.Router();
 var organization = require('../models/organization');
 var scenes			 = require('../models/scene');
+var playlists		 = require('../models/playlist');
 
 router.get('/', (req, res, next) => {
 	if   (req.session.user) { res.render('dashboard', {  user : req.user, isAuth : req.isAuthenticated() }); }
@@ -10,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/dash', (req, res, next) => {
 	if (!req.user) { res.render('login', { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
-  else 					 { res.render('dashboard', { user : req.user, isAuth : req.isAuthenticated() 							}); console.log(req.user);}
+  else 					 { res.render('dashboard', { user : req.user, isAuth : req.isAuthenticated() 							});}
 });
 
 router.get('/organization', (req, res, next) => {
@@ -33,16 +34,21 @@ router.get('/settings', (req, res, next) => {
 });
 
 router.get('/installation', (req, res, next) => {
-	if (!req.user) { res.render('login', 		{ message : 'You must login first!', isAuth : req.isAuthenticated }); }
+	if (!req.user) { res.render('login', 		{ message : 'You must login first!', isAuth : req.isAuthenticated() }); }
 	else 					 { res.render('installation', { isAuth : req.isAuthenticated() }); }
 });
 
-router.get('/playlists', (req, res, next) => {
-	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
+router.get('/advancedSearch', (req, res, next) => {
+	if (!req.user) { res.render('login', 		{ message : 'You must login first!', isAuth : req.isAuthenticated() }); }
+	else 					 { res.render('advancedSearch', { isAuth : req.isAuthenticated() }); }
+});
+
+router.get('/createPlaylist', (req, res, next) => {
+	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
 	else 					 {
 		if (req.user.scenes) {
 			scenes.find({_author: req.user}, (err, userScenes) => {
-				res.render('playlists', 	 {
+				res.render('createPlaylist', 	 {
 					scenes : userScenes,
 					isAuth : req.isAuthenticated()
 				});
@@ -54,8 +60,20 @@ router.get('/playlists', (req, res, next) => {
 	}
 });
 
+router.get('/playlistGallery', (req, res, next) => {
+	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
+	else 					 {
+		playlists.find({_author: req.user}, (err, pls) => {
+			res.render('playlistGallery', 	 {
+				playlists : pls,
+				isAuth : req.isAuthenticated()
+			});
+		})
+	}
+});
+
 router.get('/uploadScene', (req, res, next) => {
-	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated }); }
+	if (!req.user) { res.render('login', 			 { message : 'You must login first!', isAuth : req.isAuthenticated() }); }
 	else 					 {
 		if (req.user.scenes) {
 			scenes.find({_author: req.user}, (err, userScenes) => {

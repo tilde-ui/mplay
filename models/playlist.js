@@ -3,6 +3,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var playlistSchema = new mongoose.Schema({
 
+	_author         : { type : ObjectId, required : true, ref : 'user' },
 	name						:	{type: String,		required: true},
 	description			:	{type: String,		required: false},
 	molecules 			:[{type: ObjectId, ref : 'molecule'}],

@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  div.row
+    div.col.m12.s12
+      div.card
+        div.card-content
+          span.card-title.black-text Advanced Search
+          form(action='/search/search', method='post')
+            div.row
+              div.input-field.col.m3
+                input.validate(name='keywords', type='text', placeholder='Keywords')
+              div.input-field.col.m2
+                input.validate(name='author', type='text', placeholder='Author')
+              div.input-field.col.m2
+                select.browser-default (defaultvalue='1')
+                  option(value='1') Scene
+                  option(value='2') Playlist
+              div.input-field.col.m3
+                input.datepicker(type='date')
+              div.input-field.col.m2
+                button.btn Search
+          div.row
+            table
+              thead
+                tr
+                  th Molecule
+                  th Author
+                  th
+                  th
+              tbody
+                if results
+                  each scene in results
+                    tr
+                      td= scene.title
+                      td= scene._author
+                      td
+                else
+                  tr
+                    td No Results.

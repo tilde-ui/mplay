@@ -7,5 +7,7 @@ div.card
           each s, index in scenes
             li.collection-item.scene(data-scene='#{JSON.stringify(s)}', data-index='#{index}')
               div= s.title
+                a.preview-scene.modal-trigger(href='#scenePreview' onClick="getScript(#{JSON.stringify(s)})" title="Preview Scene")
+                  i.material-icons play_arrow
 script(type='text/javascript' src='/jsmol/JSmol.min.js')
 script(src='/javascripts/scene.js')

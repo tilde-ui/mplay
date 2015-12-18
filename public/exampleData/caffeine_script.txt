@@ -1,1 +1,1 @@
-load /exampleData/caffeine.mol; background black;
+load /exampleData/caffeine.mol; background black; spin on;
